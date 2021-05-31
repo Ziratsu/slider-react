@@ -1,0 +1,12 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Open sans, sans-serif;
+  height: 100vh;
+  background: #f1f1f1;
+  overflow: hidden;
+}
