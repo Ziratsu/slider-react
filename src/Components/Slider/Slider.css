@@ -75,3 +75,22 @@
 .dot.active {
   background: rgb(32, 32, 32);
 }
+// extends youtube content
+.autoSlide-button {
+  background: #f1f1f1;
+  color: #202020;
+  font-weight: 800;
+  position: absolute;
+  display: flex;
+  bottom: 10px;
+  left: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  opacity: 0.35;
+  cursor: pointer;
+}
+
+.autoSlide-button:hover {
+  opacity: 1;
+}
