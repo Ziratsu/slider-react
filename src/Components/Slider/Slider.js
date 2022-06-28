@@ -6,6 +6,7 @@ import dataSlider from './dataSlider'
 export default function Slider() {
 
     const [slideIndex, setSlideIndex] = useState(1)
+    const [intervalId, setIntervalId] = useState(0);
 
     const nextSlide = () => {
         if(slideIndex !== dataSlider.length){
@@ -15,7 +16,7 @@ export default function Slider() {
             setSlideIndex(1)
         }
     }
-
+    
     const prevSlide = () => {
         if(slideIndex !== 1){
             setSlideIndex(slideIndex - 1)
@@ -28,7 +29,27 @@ export default function Slider() {
     const moveDot = index => {
         setSlideIndex(index)
     }
+    
+    // using interval ID for start/ stop
+    const autoSlide = () => {
+          if (intervalId) {
+            clearInterval(intervalId);
+            setIntervalId(0);
+            return;
+          }
 
+          const newIntervalId = setInterval(() => {
+            setSlideIndex(prevCount => {
+                if (prevCount === dataSlider.length) {
+                    return 1
+                } else {
+                    return prevCount + 1
+                }
+            });        
+          }, 5000);
+          setIntervalId(newIntervalId);
+    };
+    
     return (
         <div className="container-slider">
             {dataSlider.map((obj, index) => {
@@ -54,6 +75,9 @@ export default function Slider() {
                     ></div>
                 ))}
             </div>
+            <button className="autoSlide-button" onClick={autoSlide}>
+                {intervalId ? "Stop Slide Show" : "Start Slide Show"}
+            </button>
         </div>
     )
 }
